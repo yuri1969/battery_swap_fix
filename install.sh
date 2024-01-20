@@ -17,8 +17,8 @@ chown root: /usr/local/bin/battery_swap_fix.sh
 
 # Install service that watches start, shutdown and standby
 cp "$DIR/battery_swap_fix.service" /etc/systemd/system/battery_swap_fix.service
-chmod 644 /etc/udev/rules.d/20-battery_swap_fix.rules
-chown root: /etc/udev/rules.d/20-battery_swap_fix.rules
+chmod 644 /etc/systemd/system/battery_swap_fix.service
+chown root: /etc/systemd/system/battery_swap_fix.service
 
 # Install udev rule to listen for power events
 cp "$DIR/20-battery_swap_fix.rules" /etc/udev/rules.d/20-battery_swap_fix.rules
@@ -29,5 +29,4 @@ chown root: /etc/udev/rules.d/20-battery_swap_fix.rules
 systemctl enable battery_swap_fix.service
 systemctl start battery_swap_fix.service
 
-echo "Restart required!"
-echo "\t'udev' reload required."
+printf "Restart required!\n\t'udev' reload required."
