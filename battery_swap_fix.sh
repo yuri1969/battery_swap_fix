@@ -3,6 +3,10 @@
 CHOICE=0    # 0=Power, 1=Battery
 SWAP_THRESHOLD=5
 
+function on_ac_power() {
+    acpi -a | grep -q 'on-line'
+}
+
 if [ "$#" -eq 0 ]; then
     CHOICE=$(on_ac_power; echo $?)
 else
